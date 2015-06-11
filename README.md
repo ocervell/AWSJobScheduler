@@ -8,13 +8,14 @@ The purpose is to take a workload consisting in individual tasks that can be ind
 This will allow a huge gain of performance for huge workloads in comparison to doing all the tasks on one single machine.
 
 The framework consists in different entities:
-* **Client**:  This node will  send  a  workload  file  consisting  in tasks to be  processed. These tasks are independent from each other, so that each task can be computed individually.
-* **Scheduler**: This node will take the workload file from the clients and distribute them to workers so that the computation can be done in a parallel and faster way.
-* **Worker**:  This node has  multiple  threads, each of them taking a task as input, processing it, and sending the output back to the scheduler.
+![My image](http://i.imgur.com/cZriHks.jpg)
+* **Client (EC2)**:  This node will  send  a  workload  file  consisting  in tasks to be  processed. These tasks are independent from each other, so that each task can be computed individually.
+* **Scheduler (EC2)**: This node will take the workload file from the clients and distribute them to workers so that the computation can be done in a parallel and faster way.
+* **Worker (EC2)**:  This node has  multiple  threads, each of them taking a task as input, processing it, and sending the output back to the scheduler.
 * **Global  Request  Queue (SQS)**: A distributed queue running on Amazon Simple Queue Service (SQS) that  will  be  used  to communicate the tasks from the scheduler to the workers. 
 * **Client Response Queue (SQS)**: Queue running on SQS that will be used to communicate the outputs of the tasks (after processing) from the worker to the scheduler.
 * **Dynamic  Provisioning (Bash/Python)**:  Piece of software/script that runs separately allowing us to allocate workers dynamically by monitoring the evolution of the Global Request Queue.
-* **Dynamo DB**:  This is an amazon service that will allow us to keep track of the processing of the tasks by the workers.
+* **Monitoring System (Dynamo DB)**:  This is an amazon service that will allow us to keep track of the processing of the tasks by the workers.
 The  framework  will  allow  the  processing  of  huge workload  files,  allocating  workers  on-the-fly according  to  the number of tasks in the main queue.
 Such a framework can be used to do image or video processing, as well as any heavy-CPU task such as scientific computing that would take much more time if processed only on one machine.
 Our framework was programmed using Python.
