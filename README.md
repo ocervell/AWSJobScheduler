@@ -23,27 +23,28 @@ Our framework was programmed using Python.
 Usage
 -----
 
-**client.py –s <IP_ADRESS:PORT> -w <WORKLOAD>**
+**client.py –s <IP_ADRESS:PORT> -w <WORKLOAD>** - *launches the client program*
 * **IP_ADRESS:PORT** is the location of the front-end scheduler (should be known before starting the client).
 * **WORKLOAD** is the local file (for the client) that will store the tasks that need to be submitted to the scheduler (for example succession of sleep tasks, see our samples.
 
-**scheduler.py –s PORT –lw <NUM_WORKERS> -rw**
+**scheduler.py –s PORT –lw <NUM_WORKERS> -rw** - *launches the scheduler program*
 * PORT is the server port where the clients will connect to submit tasks and to retrieve results.
 * -lw is the switch for local worker (NUM = number of workers)
 * -rw is the switch for remote worker
 
-**worker.py –i <TIME_SEC>**
+**worker.py –i <TIME_SEC>** - *launches the worker program*
 TIME_SEC denotes the idle time in seconds that the worker will stay active.
 
-**dp.py**
+**dp.py** - *launches monitoring system and dynamic scheduling*
 
-**sp.py –n <NB_INSTANCES> -t <INSTANCE_TYPE>**
+**sp.py –n <NB_INSTANCES> -t <INSTANCE_TYPE>** - *launches fixed number of instances*
 
-**workload_gen.py <NB_TASKS> <SLEEP>**
+**workload_gen.py <NB_TASKS> <SLEEP>** - *generation of a workload (sleep tasks)*
 Note: <SLEEP> is in milliseconds (for 1 second task, you should specify 1000).
 
 Getting started tutorial
 ------------------------
+For all the experiments below, the first steps would be to put your .pem (key file) and .csv (credentials) files in the same folder as the job scheduler. Refer to AWS documentation for instructions on how to get those files.
 
 First Run
 ---------
